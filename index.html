@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      color: black;
+      text-align: center;
+      overflow-x: hidden;
+      animation: backgroundShift 10s infinite alternate;
+    }
+
+    @keyframes backgroundShift {
+      0% { background: linear-gradient(to right, #fbc2eb, #a6c1ee); }
+      100% { background: linear-gradient(to left, #a1c4fd, #c2e9fb); }
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-top: 1em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .cake-gif {
+      width: 250px;
+      margin: 20px auto;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .wish {
+      font-size: 1.3em;
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .collage {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 30px auto;
+      gap: 10px;
+      max-width: 90%;
+    }
+
+    .collage img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .collage img:hover {
+      transform: scale(1.1);
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Happy Birthday, Kanishka! 🎉</h1>
+
+  <img class="cake-gif" src="4444476976fb516939efc3f2784cdc59.gif" alt="Birthday Cake GIF" />
+  <!-- < class="cake-gif" src="WhatsApp Video 2025-05-05 at 18.40.36_3165903d.mp4" alt="Birthday Cake GIF" /> -->
+  <video width="320" height="240" controls autoplay>
+    <source src="WhatsApp Video 2025-05-05 at 18.40.36_3165903d.mp4" type="video/mp4">
+  </video>
+
+  <div class="wish">
+    <p>
+      On this beautiful day, I just want to remind you how amazing, kind, and strong you are. 
+      I'm so grateful for all the memories we've made and the many more to come. 
+      May your year ahead be filled with endless laughter, sweet surprises, and all the love in the world. 
+      Happy Birthday! 💖🎂🎁
+      <br>
+      Hey baby .. ❣🥳
+      A veryyyyy veryyyy happy birthday 🎈🎂🎂🎂...
+      May your all wishes come true .. may you achieve all your dreams 🫶🏻🤞🏻🤞🏻🤞🏻...
+
+      Tu bahut aachi .. job kare... Tera ssg ka exam top numbers se pass ho...
+      Tere papa tere pe bahut proud ho ...🤞🏻🤞🏻...
+      Tere bahut aache marks aaye...
+
+      Happy birthday babyyy ..
+      I hope .. jo wishes likhi hai vo sab true ho......
+      Aur tu apni life mei bahut khush rahe aur bahut achi rahe teri life ....
+    </p>
+  </div>
+
+  <div class="collage">
+    <img src="images/IMG-20250411-WA0012.jpg" alt="Friend 1">
+    <img src="images/IMG_20250223_195410.jpg" alt="Friend 2" style="object-fit:contain ;">
+    <img src="images/Snapchat-1022485772.jpg" alt="Friend 3">
+    <img src="images/Snapchat-36390234.jpg" alt="Friend 4">
+    <!-- Replace above with actual collage image URLs -->
+  </div>
+
+  <canvas class="confetti" id="confetti-canvas"></canvas>
+
+  <script>
+    // Confetti Effect
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+      for (let i = 0; i < 100; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 6 + 2,
+          d: Math.random() * 100,
+          color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+          tilt: Math.random() * 10 - 10
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+      updateParticles();
+    }
+
+    function updateParticles() {
+      particles.forEach(p => {
+        p.y += Math.cos(p.d) + 1 + p.r / 2;
+        p.x += Math.sin(p.d);
+        if (p.y > canvas.height) {
+          p.y = -10;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    function animate() {
+      drawParticles();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+
+    resizeCanvas();
+    createParticles();
+    animate();
+  </script>
+</body>
+</html>
